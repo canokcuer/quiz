@@ -244,8 +244,19 @@
       </div>
 
       <div class="dg-quiz__deficiency">
-        <span class="dg-quiz__deficiency-label">Senin icin en kritik eksik:</span>
-        <span class="dg-quiz__deficiency-value"></span>
+        <div class="dg-quiz__deficiency-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="dg-quiz__deficiency-content">
+          <span class="dg-quiz__deficiency-label">Senin icin en kritik eksik</span>
+          <span class="dg-quiz__deficiency-value"></span>
+          <span class="dg-quiz__deficiency-ingredient"></span>
+        </div>
+        <div class="dg-quiz__deficiency-glow"></div>
       </div>
 
       <div class="dg-quiz__score-breakdown">
@@ -285,42 +296,79 @@
         <p class="dg-quiz__recommendation-text"></p>
       </div>
 
-      <!-- Product Card -->
+      <!-- Product Card - Premium Design -->
       <div class="dg-quiz__product">
-        <div class="dg-quiz__product-image">
-          {% if section.settings.recommended_product %}
-            {{ section.settings.recommended_product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
-          {% else %}
-            <div class="dg-quiz__product-placeholder">
-              <svg viewBox="0 0 80 80" fill="none">
-                <rect x="15" y="10" width="50" height="60" rx="8" stroke="currentColor" stroke-width="2"/>
-                <circle cx="40" cy="35" r="12" stroke="currentColor" stroke-width="2"/>
-                <path d="M40 28v14M33 35h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M25 55h30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-          {% endif %}
+        <div class="dg-quiz__product-badge">
+          <svg viewBox="0 0 20 20" fill="none" width="14" height="14">
+            <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.69l5.34-.78L10 1z" fill="currentColor"/>
+          </svg>
+          Sana Ozel Oneri
         </div>
-        <div class="dg-quiz__product-info">
-          <h4 class="dg-quiz__product-name">
+        <div class="dg-quiz__product-header">
+          <div class="dg-quiz__product-image">
             {% if section.settings.recommended_product %}
-              {{ section.settings.recommended_product.title }}
+              {{ section.settings.recommended_product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
             {% else %}
-              DreamGlow
+              <div class="dg-quiz__product-placeholder">
+                <svg viewBox="0 0 80 80" fill="none">
+                  <rect x="15" y="10" width="50" height="60" rx="8" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="40" cy="35" r="12" stroke="currentColor" stroke-width="2"/>
+                  <path d="M40 28v14M33 35h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
             {% endif %}
-          </h4>
-          <p class="dg-quiz__product-benefits">Kolajen + Melisa + Papatya + Hyaluronik Asit</p>
-          <div class="dg-quiz__product-price">
-            {% if section.settings.recommended_product %}
-              {{ section.settings.recommended_product.price | money }}
-            {% else %}
-              <span class="dg-quiz__price-original">₺599</span>
-              <span class="dg-quiz__price-sale">₺509</span>
-            {% endif %}
+            <div class="dg-quiz__product-glow"></div>
+          </div>
+          <div class="dg-quiz__product-info">
+            <span class="dg-quiz__product-brand">CYRASOUL</span>
+            <h4 class="dg-quiz__product-name">
+              {% if section.settings.recommended_product %}
+                {{ section.settings.recommended_product.title }}
+              {% else %}
+                DreamGlow
+              {% endif %}
+            </h4>
+            <p class="dg-quiz__product-tagline">Gece Guzellik Formulu</p>
+            <div class="dg-quiz__product-price">
+              {% if section.settings.recommended_product %}
+                <span class="dg-quiz__price-sale">{{ section.settings.recommended_product.price | money }}</span>
+              {% else %}
+                <span class="dg-quiz__price-original">₺599</span>
+                <span class="dg-quiz__price-sale">₺509</span>
+              {% endif %}
+              <span class="dg-quiz__price-discount">-%{{ section.settings.discount_percent | default: '15' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="dg-quiz__product-ingredients">
+          <div class="dg-quiz__ingredient">
+            <span class="dg-quiz__ingredient-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span>Kolajen</span>
+          </div>
+          <div class="dg-quiz__ingredient">
+            <span class="dg-quiz__ingredient-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v4M12 14h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <span>Melisa</span>
+          </div>
+          <div class="dg-quiz__ingredient">
+            <span class="dg-quiz__ingredient-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span>Papatya</span>
+          </div>
+          <div class="dg-quiz__ingredient">
+            <span class="dg-quiz__ingredient-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+            <span>Hyaluronik Asit</span>
           </div>
         </div>
         <a href="{{ section.settings.recommended_product.url | default: '/products/dreamglow' }}{% if section.settings.discount_code != blank %}?discount={{ section.settings.discount_code }}{% endif %}" class="dg-quiz__btn dg-quiz__btn--cta">
-          Gece Rutinini Baslar - %{{ section.settings.discount_percent | default: '15' }} Indirimli Al
+          <span class="dg-quiz__btn-text">Simdi Satin Al</span>
+          <span class="dg-quiz__btn-badge">%{{ section.settings.discount_percent | default: '15' }} INDIRIM</span>
         </a>
       </div>
 
@@ -983,25 +1031,80 @@
   }
 
   .dg-quiz__deficiency {
-    background: var(--dg-bg-card);
-    border: 1px solid var(--dg-border);
-    border-radius: var(--dg-radius-md);
-    padding: var(--dg-spacing-md);
-    margin-bottom: var(--dg-spacing-lg);
-    text-align: center;
+    position: relative !important;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    margin-bottom: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .dg-quiz__deficiency-icon {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    background: linear-gradient(135deg, #D4AF37, #F5DEB3) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #0A0F1C !important;
+  }
+
+  .dg-quiz__deficiency-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .dg-quiz__deficiency-content {
+    flex: 1 !important;
+    text-align: left !important;
   }
 
   .dg-quiz__deficiency-label {
-    display: block;
-    font-size: var(--dg-font-size-sm);
-    color: var(--dg-text-secondary);
-    margin-bottom: var(--dg-spacing-xs);
+    display: block !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    color: #9CA3AF !important;
+    margin-bottom: 4px !important;
   }
 
   .dg-quiz__deficiency-value {
-    font-size: var(--dg-font-size-base);
-    font-weight: 600;
-    color: var(--dg-amber);
+    display: block !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #D4AF37 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .dg-quiz__deficiency-ingredient {
+    display: block !important;
+    font-size: 13px !important;
+    color: #F5DEB3 !important;
+    font-weight: 500 !important;
+  }
+
+  .dg-quiz__deficiency-glow {
+    position: absolute !important;
+    top: -50% !important;
+    right: -20% !important;
+    width: 150px !important;
+    height: 150px !important;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%) !important;
+    pointer-events: none !important;
+    animation: pulseGlow 3s ease-in-out infinite !important;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
   }
 
   .dg-quiz__score-breakdown {
@@ -1058,78 +1161,205 @@
     margin: 0;
   }
 
-  /* Product Card */
+  /* Product Card - Premium Design */
   .dg-quiz__product {
-    background: var(--dg-bg-secondary);
-    border: 1px solid var(--dg-border);
-    border-radius: var(--dg-radius-lg);
-    padding: var(--dg-spacing-md);
-    margin-bottom: var(--dg-spacing-md);
+    position: relative !important;
+    background: linear-gradient(180deg, #111827 0%, #0A0F1C 100%) !important;
+    border: 1px solid #374151 !important;
+    border-radius: 20px !important;
+    padding: 24px !important;
+    margin-bottom: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .dg-quiz__product-badge {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background: linear-gradient(135deg, #D4AF37, #B8962E) !important;
+    color: #0A0F1C !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding: 6px 12px !important;
+    border-radius: 20px !important;
+  }
+
+  .dg-quiz__product-header {
+    display: flex !important;
+    gap: 20px !important;
+    margin-bottom: 20px !important;
   }
 
   .dg-quiz__product-image {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto var(--dg-spacing-md);
-    border-radius: var(--dg-radius-md);
-    overflow: hidden;
-    background: var(--dg-bg-card);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative !important;
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    background: #1F2937 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .dg-quiz__product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .dg-quiz__product-glow {
+    position: absolute !important;
+    inset: -20px !important;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%) !important;
+    pointer-events: none !important;
+    animation: productGlow 2s ease-in-out infinite !important;
+  }
+
+  @keyframes productGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
   }
 
   .dg-quiz__product-placeholder {
-    width: 80px;
-    height: 80px;
-    color: var(--dg-text-muted);
+    width: 60px !important;
+    height: 60px !important;
+    color: #6B7280 !important;
   }
 
   .dg-quiz__product-placeholder svg {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .dg-quiz__product-info {
-    text-align: center;
-    margin-bottom: var(--dg-spacing-md);
+    flex: 1 !important;
+    text-align: left !important;
+    padding-top: 4px !important;
+  }
+
+  .dg-quiz__product-brand {
+    display: block !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    color: #D4AF37 !important;
+    margin-bottom: 4px !important;
   }
 
   .dg-quiz__product-name {
-    font-size: var(--dg-font-size-base);
-    font-weight: 600;
-    margin: 0 0 var(--dg-spacing-xs);
+    display: block !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #F9FAFB !important;
+    margin: 0 0 2px 0 !important;
+    line-height: 1.2 !important;
   }
 
-  .dg-quiz__product-benefits {
-    font-size: var(--dg-font-size-sm);
-    color: var(--dg-text-secondary);
-    margin: 0 0 var(--dg-spacing-sm);
+  .dg-quiz__product-tagline {
+    display: block !important;
+    font-size: 12px !important;
+    color: #9CA3AF !important;
+    margin: 0 0 12px 0 !important;
+    font-style: italic !important;
   }
 
   .dg-quiz__product-price {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--dg-spacing-sm);
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
   }
 
   .dg-quiz__price-original {
-    font-size: var(--dg-font-size-sm);
-    color: var(--dg-text-muted);
-    text-decoration: line-through;
+    font-size: 14px !important;
+    color: #6B7280 !important;
+    text-decoration: line-through !important;
   }
 
   .dg-quiz__price-sale {
-    font-size: var(--dg-font-size-lg);
-    font-weight: 700;
-    color: var(--dg-gold);
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    color: #F9FAFB !important;
+  }
+
+  .dg-quiz__price-discount {
+    display: inline-block !important;
+    background: rgba(34, 197, 94, 0.2) !important;
+    color: #22C55E !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+  }
+
+  .dg-quiz__product-ingredients {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-bottom: 20px !important;
+    padding-top: 16px !important;
+    border-top: 1px solid #374151 !important;
+  }
+
+  .dg-quiz__ingredient {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background: rgba(212, 175, 55, 0.1) !important;
+    border: 1px solid rgba(212, 175, 55, 0.2) !important;
+    padding: 6px 12px !important;
+    border-radius: 20px !important;
+    font-size: 12px !important;
+    color: #F5DEB3 !important;
+    font-weight: 500 !important;
+  }
+
+  .dg-quiz__ingredient-icon {
+    display: flex !important;
+    color: #D4AF37 !important;
+  }
+
+  /* CTA Button Premium */
+  .dg-quiz__btn--cta {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    background: linear-gradient(135deg, #D4AF37 0%, #B8962E 100%) !important;
+    color: #0A0F1C !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    padding: 16px 24px !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4) !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .dg-quiz__btn--cta:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5) !important;
+  }
+
+  .dg-quiz__btn-text {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+  }
+
+  .dg-quiz__btn-badge {
+    background: rgba(0, 0, 0, 0.2) !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
   }
 
   .dg-quiz__restart {
@@ -1160,32 +1390,6 @@
 
     .dg-quiz__input-group .dg-quiz__btn {
       flex-shrink: 0;
-    }
-
-    .dg-quiz__product {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      grid-template-rows: auto auto;
-      gap: var(--dg-spacing-md);
-      align-items: center;
-    }
-
-    .dg-quiz__product-image {
-      margin: 0;
-      grid-row: 1 / 3;
-    }
-
-    .dg-quiz__product-info {
-      text-align: left;
-      margin: 0;
-    }
-
-    .dg-quiz__product-price {
-      justify-content: flex-start;
-    }
-
-    .dg-quiz__btn--cta {
-      grid-column: 2;
     }
   }
 
@@ -1694,8 +1898,12 @@
 
         // Deficiency
         const deficiencyValue = quiz.querySelector('.dg-quiz__deficiency-value');
+        const deficiencyIngredient = quiz.querySelector('.dg-quiz__deficiency-ingredient');
         if (deficiencyValue) {
           deficiencyValue.textContent = deficiency.name;
+        }
+        if (deficiencyIngredient) {
+          deficiencyIngredient.textContent = `${deficiency.ingredient} ile cozum`;
         }
 
         // Score breakdown dots - animate by adding .active class

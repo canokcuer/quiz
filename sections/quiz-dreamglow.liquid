@@ -557,6 +557,20 @@
     transition: opacity var(--dg-transition-base), transform var(--dg-transition-base), visibility 0s 0s;
   }
 
+  /* Results screen - scrollable */
+  .dg-quiz__screen--results {
+    justify-content: flex-start !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-top: 40px !important;
+    padding-bottom: 60px !important;
+  }
+
+  .dg-quiz__screen--results.active {
+    display: flex !important;
+  }
+
   /* Intro Screen */
   .dg-quiz__intro-content {
     text-align: center;
@@ -890,7 +904,8 @@
   .dg-quiz__results-content {
     max-width: 450px;
     width: 100%;
-    padding-bottom: var(--dg-spacing-xl);
+    padding-bottom: 80px !important;
+    flex-shrink: 0 !important;
   }
 
   .dg-quiz__results-header {
@@ -999,18 +1014,20 @@
     height: 8px !important;
     background: #1F2937 !important;
     border-radius: 4px !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     position: relative !important;
   }
 
   .dg-quiz__score-item-fill {
-    height: 100% !important;
-    min-height: 8px !important;
+    width: 100% !important;
+    height: 8px !important;
     background: linear-gradient(90deg, #D4AF37, #F5DEB3) !important;
     border-radius: 4px !important;
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
+    transform: scaleX(0) !important;
+    transform-origin: left center !important;
   }
 
   .dg-quiz__recommendation {
@@ -1706,25 +1723,26 @@
       requestAnimationFrame(animation);
     }
 
-    // Animate progress bar with requestAnimationFrame - Shopify compatible
+    // Animate progress bar with scaleX transform - Shopify compatible
     function animateBar(el, targetPercent, delay = 0) {
       if (!el) return;
 
-      // Force initial state
-      el.setAttribute('style', 'width: 0% !important;');
+      // Force initial state with scaleX
+      el.style.cssText = 'width:100%!important;height:8px!important;background:linear-gradient(90deg,#D4AF37,#F5DEB3)!important;border-radius:4px!important;position:absolute!important;top:0!important;left:0!important;transform:scaleX(0)!important;transform-origin:left center!important;';
 
       setTimeout(() => {
         let startTime = null;
         const duration = 1000;
+        const targetScale = targetPercent / 100;
 
         function animation(currentTime) {
           if (!startTime) startTime = currentTime;
           const progress = Math.min((currentTime - startTime) / duration, 1);
           // Ease out cubic
           const eased = 1 - Math.pow(1 - progress, 3);
-          const currentWidth = eased * targetPercent;
+          const currentScale = eased * targetScale;
 
-          el.setAttribute('style', `width: ${currentWidth}% !important;`);
+          el.style.transform = `scaleX(${currentScale})`;
 
           if (progress < 1) {
             requestAnimationFrame(animation);

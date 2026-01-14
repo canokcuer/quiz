@@ -372,9 +372,9 @@
 
   /* Base Styles */
   .dg-quiz {
-    font-family: var(--dg-font-family);
-    background: var(--dg-bg-primary);
-    color: var(--dg-text-primary);
+    font-family: var(--dg-font-family) !important;
+    background: var(--dg-bg-primary) !important;
+    color: var(--dg-text-primary) !important;
     min-height: 100vh;
     min-height: 100dvh;
     position: relative;
@@ -385,6 +385,118 @@
   .dg-quiz *::before,
   .dg-quiz *::after {
     box-sizing: border-box;
+  }
+
+  /* Force text colors - Shopify override fix */
+  #dreamglow-quiz-{{ section.id }} h2,
+  #dreamglow-quiz-{{ section.id }} h3,
+  #dreamglow-quiz-{{ section.id }} h4,
+  #dreamglow-quiz-{{ section.id }} p,
+  #dreamglow-quiz-{{ section.id }} span,
+  #dreamglow-quiz-{{ section.id }} button,
+  #dreamglow-quiz-{{ section.id }} a,
+  #dreamglow-quiz-{{ section.id }} label,
+  #dreamglow-quiz-{{ section.id }} input {
+    color: inherit !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__title {
+    background: linear-gradient(135deg, #F9FAFB, #F5DEB3) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__subtitle,
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__text-secondary {
+    color: #9CA3AF !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__question-text {
+    color: #F9FAFB !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__answer {
+    color: #F9FAFB !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__answer-text {
+    color: #F9FAFB !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__insight {
+    color: #9CA3AF !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__email-title,
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__results-title {
+    color: #F9FAFB !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__email-subtitle {
+    color: #9CA3AF !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__score-value {
+    color: #D4AF37 !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__score-label,
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__deficiency-label,
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__score-item-label {
+    color: #9CA3AF !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__deficiency-value {
+    color: #F59E0B !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__recommendation-text {
+    color: #F9FAFB !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__product-name {
+    color: #F9FAFB !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__product-benefits {
+    color: #9CA3AF !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__price-original {
+    color: #6B7280 !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__price-sale {
+    color: #D4AF37 !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__btn--primary,
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__btn--cta {
+    color: #0A0F1C !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__btn--secondary {
+    color: #F9FAFB !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__skip,
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__restart {
+    color: #6B7280 !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__skip:hover,
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__restart:hover {
+    color: #9CA3AF !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__input {
+    color: #F9FAFB !important;
+    background: #1F2937 !important;
+  }
+
+  #dreamglow-quiz-{{ section.id }} .dg-quiz__input::placeholder {
+    color: #6B7280 !important;
   }
 
   /* Progress Bar */
@@ -884,18 +996,21 @@
   }
 
   .dg-quiz__score-item-bar {
-    height: 8px;
-    background: var(--dg-bg-card);
-    border-radius: 4px;
-    overflow: hidden;
+    height: 8px !important;
+    background: #1F2937 !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    position: relative !important;
   }
 
   .dg-quiz__score-item-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--dg-gold), var(--dg-gold-light));
-    border-radius: 4px;
-    transition: width 1s ease-out;
+    height: 100% !important;
+    min-height: 8px !important;
+    background: linear-gradient(90deg, #D4AF37, #F5DEB3) !important;
+    border-radius: 4px !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
   }
 
   .dg-quiz__recommendation {
@@ -1538,8 +1653,9 @@
 
         if (scoreCircle) {
           const circumference = 283;
-          const offset = circumference - (percentage / 100) * circumference;
-          scoreCircle.style.strokeDashoffset = offset;
+          const targetOffset = circumference - (percentage / 100) * circumference;
+          // Animate with requestAnimationFrame for Shopify compatibility
+          animateCircle(scoreCircle, circumference, targetOffset);
         }
 
         if (scoreValue) {
@@ -1552,14 +1668,15 @@
           deficiencyValue.textContent = deficiency.name;
         }
 
-        // Score breakdown bars
+        // Score breakdown bars - using setAttribute for Shopify compatibility
         const sleepBar = quiz.querySelector('[data-category="sleep"] .dg-quiz__score-item-fill');
         const skinBar = quiz.querySelector('[data-category="skin"] .dg-quiz__score-item-fill');
         const recoveryBar = quiz.querySelector('[data-category="recovery"] .dg-quiz__score-item-fill');
 
-        if (sleepBar) sleepBar.style.width = `${(sleepScore / 3) * 100}%`;
-        if (skinBar) skinBar.style.width = `${(skinScore / 3) * 100}%`;
-        if (recoveryBar) recoveryBar.style.width = `${(recoveryScore / 3) * 100}%`;
+        // Animate bars with requestAnimationFrame for Shopify compatibility
+        animateBar(sleepBar, (sleepScore / 3) * 100);
+        animateBar(skinBar, (skinScore / 3) * 100, 200);
+        animateBar(recoveryBar, (recoveryScore / 3) * 100, 400);
 
         // Recommendation text
         const recText = quiz.querySelector('.dg-quiz__recommendation-text');
@@ -1580,6 +1697,61 @@
         const progress = Math.min((currentTime - startTime) / duration, 1);
         const value = Math.floor(progress * (end - start) + start);
         el.textContent = value;
+
+        if (progress < 1) {
+          requestAnimationFrame(animation);
+        }
+      }
+
+      requestAnimationFrame(animation);
+    }
+
+    // Animate progress bar with requestAnimationFrame - Shopify compatible
+    function animateBar(el, targetPercent, delay = 0) {
+      if (!el) return;
+
+      // Force initial state
+      el.setAttribute('style', 'width: 0% !important;');
+
+      setTimeout(() => {
+        let startTime = null;
+        const duration = 1000;
+
+        function animation(currentTime) {
+          if (!startTime) startTime = currentTime;
+          const progress = Math.min((currentTime - startTime) / duration, 1);
+          // Ease out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const currentWidth = eased * targetPercent;
+
+          el.setAttribute('style', `width: ${currentWidth}% !important;`);
+
+          if (progress < 1) {
+            requestAnimationFrame(animation);
+          }
+        }
+
+        requestAnimationFrame(animation);
+      }, delay);
+    }
+
+    // Animate SVG circle stroke - Shopify compatible
+    function animateCircle(el, circumference, targetOffset) {
+      if (!el) return;
+
+      let startTime = null;
+      const duration = 1000;
+      const startOffset = circumference;
+
+      function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const currentOffset = startOffset - (eased * (startOffset - targetOffset));
+
+        el.style.strokeDashoffset = currentOffset;
+        el.setAttribute('stroke-dashoffset', currentOffset);
 
         if (progress < 1) {
           requestAnimationFrame(animation);
